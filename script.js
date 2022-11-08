@@ -1,28 +1,29 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
-var options={
- numbers: [1,2,3,4,5,6,7,8,9,0],
- specialChar: ["!","@","#","$","%","^","&","*","(","_","+",")",],
- lowercaseLetters: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"],
- uppercaseLetters: ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'],
-}
 
 
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
+  
   passwordText.value = password;
-
+  
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
 
 function generatePassword(){
-   
+  
+  //var options={
+   var numbers= ['1','2','3','4','5','6','7','8','9','0',];
+   var specialChar= ["!","@","#","$","%","^","&","*","(","_","+",")",];
+   var lowercaseLetters= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z",];
+   var uppercaseLetters= ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',];
+   var passSelection= ("");
+
   var passLength = window.prompt("enter a length of password desired between 8 and 128 characters");
   
   while (passLength <= 8 ||
@@ -33,22 +34,64 @@ console.log(passLength);
 
   var specialcharconf = window.confirm("Do you want special characters?");
 
-    console.log(specialcharconf)
+    console.log(specialcharconf);
+
+    if (specialcharconf){
+      var passSelection =   passSelection.concat(specialChar)
+      };
 
   var lowercaseconf = window.confirm("Do you want lowercase letters?");
 
-    console.log(lowercaseconf)
+    console.log(lowercaseconf);
+
+    if (lowercaseconf){
+      var passSelection =   passSelection.concat(lowercaseLetters)
+      };
 
   var uppercaseconf = window.confirm("Do you want UPPERCASE letters?");
 
-    console.log(uppercaseconf)
+    console.log(uppercaseconf);
 
-  var numbersconf = window.confirm("Do you want numbers?")
+    if (uppercaseconf){
+      var passSelection =   passSelection.concat(uppercaseLetters)
+      };
 
-    console.log(numbersconf)
+  var numbersconf = window.confirm("Do you want numbers?");
 
-  window.alert("generating your password")
+    console.log(numbersconf);
+
+    if (numbersconf){
+      var passSelection =   passSelection.concat(numbers)
+      };
+
+  window.alert("generating your password");
+
+  console.log(passSelection);
+
   
+
   
+  /*
+    function(specialcharconf):{
+      for (var x =0; x < passLength; x++){
+        var randomspecialchar = math.floor(math.random()* specialChar.length)
+      }
+    }
+  */
+
+  /*
+  if (specialcharconf && lowercaseconf && uppercaseconf && numbersconf){
+    
+  for (var x = 0; x < passLength; x++){
+    
+  var randomCharNum = Math.floor(Math.random() * options.length);
+  var randomChar = randomCharNum[x];
+   
+
+  console.log(randomChar);
+    }
+  } 
+  */
+
 
 }
