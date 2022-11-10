@@ -24,99 +24,79 @@ function generatePassword() {
   var uppercaseLetters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',];
   //pass selection makes a string out of every true boolean response to the window.confirms
   var passSelection = ("");
-  
-  
+
+
   var passLength = window.prompt("enter a length of password desired between 8 and 128 characters");
   verifyPass();
-  //password has to be between 8-128 characters in length or same message will pop up...
-  function verifyPass(){
+  //password has to be between 8-128 characters in length and has to be a number input...
+  function verifyPass() {
     if (passLength < 8 ||
-      passLength > 128 ){
-        passLength = window.prompt("PASSWORD HAS TO BE BETWEEN 8 and 128 characters");
-        verifyPass();
-      } else if (isNaN (passLength ) ) {
-        passLength = window.prompt("Password also has to be a Number Input");
-        verifyPass();
-      }
-      
+      passLength > 128) {
+      passLength = window.prompt("PASSWORD HAS TO BE BETWEEN 8 and 128 characters.");
+      verifyPass();
+    } else if (isNaN(passLength)) {
+      passLength = window.prompt("Password has to be a Number Input between 8 and 128 characters.");
+      verifyPass();
     }
-    // after the isNaN it has to make sure its a number between 8 and 128...
-    //MAKE PASSWORD FOR SURE A NUMBER AND FIGURE OUT THE WAY TO MAKE SURE EACH KIND OF CHARACTER SELECTED IS USED IN PASSWORD
-    console.log(passLength);
-    
-    
-    
-    
-    var specialcharconf = window.confirm("Do you want special characters?");
-    
-    console.log(specialcharconf);
-    
+
+  }
+
+  console.log(passLength);
+
+  // these window.confirms generate a string of the different variables when selected...
+  var specialcharconf = window.confirm("Do you want special characters?");
+
+  console.log(specialcharconf);
+
+  if (specialcharconf) {
+    var passSelection = passSelection.concat(specialChar)
+  };
+
+  var lowercaseconf = window.confirm("Do you want lowercase letters?");
+  console.log(lowercaseconf);
+  if (lowercaseconf) {
+    var passSelection = passSelection.concat(lowercaseLetters)
+  };
+
+  var uppercaseconf = window.confirm("Do you want UPPERCASE letters?");
+  console.log(uppercaseconf);
+  if (uppercaseconf) {
+    var passSelection = passSelection.concat(uppercaseLetters);
+
+  };
+
+  var numbersconf = window.confirm("Do you want numbers?");
+  console.log(numbersconf);
+  if (numbersconf) {
+    var passSelection = passSelection.concat(numbers)
+  };
+
+  //this functions purpose is to find out the length of the total character types(1-4)
+  charAddAnswer();
+  function charAddAnswer() {
+    var charAnswers = [];
     if (specialcharconf) {
-      var passSelection = passSelection.concat(specialChar)
-      
-    };
-    
-    var lowercaseconf = window.confirm("Do you want lowercase letters?");
-    
-    console.log(lowercaseconf);
-    
-    if (lowercaseconf) {
-      var passSelection = passSelection.concat(lowercaseLetters)
-      
-    };
-    
-    var uppercaseconf = window.confirm("Do you want UPPERCASE letters?");
-    
-    console.log(uppercaseconf);
-    
-    if (uppercaseconf) {
-      var passSelection = passSelection.concat(uppercaseLetters);
-      
-      // ALSO select one uppercase letter at random, add it to the pw to make sure one is present
-    };
-    
-    var numbersconf = window.confirm("Do you want numbers?");
-    
-    console.log(numbersconf);
-    
-    if (numbersconf) {
-      var passSelection = passSelection.concat(numbers)
-      
-    };
-    //this functions purpose is to find out the length of the total character types
-    charAddAnswer();
-    function charAddAnswer(){
-    var charAnswers= [];
-    if (specialcharconf) {
-      
       sc = charAnswers.push(specialcharconf)
     };
     if (lowercaseconf) {
-      
       lc = charAnswers.push(lowercaseconf)
     };
     if (uppercaseconf) {
-      
       uc = charAnswers.push(uppercaseconf)
     };
     if (numbersconf) {
-      
       nc = charAnswers.push(numbersconf)
     };
     return charAnswers;
   }
   var answerValue = charAddAnswer()
   console.log(answerValue);
-    
-    
-    //this is to make sure at least one of the choices is true.
+
+  //this is to make sure at least one of the choices is true.
   if (!specialcharconf && !numbersconf && !uppercaseconf && !lowercaseconf) {
     window.alert("you are required to select at least 1 option...");
     generatePassword();
   }
-
-  
-  // window.alert("generating your password");
 
   console.log(passSelection);
   console.log(typeof passSelection);
@@ -130,51 +110,43 @@ function generatePassword() {
     var s = '';
     var l = '';
     var u = '';
-    var n ='';
+    var n = '';
     var pas = ('');
     //push method,
-    if (specialcharconf){
-    
+    if (specialcharconf) {
       s += specialChar[Math.floor(Math.random() * specialChar.length)];
       console.log(s);
       pas.concat(s);
-     
     }
     console.log(typeof s)
-    if (lowercaseconf){
-    
+    if (lowercaseconf) {
       l += lowercaseLetters[Math.floor(Math.random() * lowercaseLetters.length)];
       console.log(l);
       pas.concat(l);
-     
     }
     console.log(typeof l)
-    if(uppercaseconf){
-    
+    if (uppercaseconf) {
       u += uppercaseLetters[Math.floor(Math.random() * uppercaseLetters.length)];
       console.log(u);
       pas.concat(u);
-      
     }
     console.log(typeof u)
-    if(numbersconf){
-    
+    if (numbersconf) {
       n += numbers[Math.floor(Math.random() * numbers.length)];
       console.log(n);
       pas.concat(n);
-      
     }
     console.log(typeof n)
-    for (var x = 0; x < (passLength-answerValue.length); x++) {
+    for (var x = 0; x < (passLength - answerValue.length); x++) {
       p += passSelection[Math.floor(Math.random() * passSelection.length)];
       console.log(p);
     }
-    pas.concat(p); 
-    pas = (p+s+l+u+n);
+    pas.concat(p);
+    pas = (p + s + l + u + n);
     console.log(typeof p);
     console.log("Password String: " + pas);
     console.log(typeof pas);
-    
+
     //this makes the string into an array - to shuffle
     var pasArray = pas.split('');
     //this function takes the array and shuffles it...
