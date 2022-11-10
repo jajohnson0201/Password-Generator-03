@@ -1,4 +1,4 @@
-# challenge-03-Password-Generator
+# Password-Generator-03
 ![Screenshot 2022-11-10 135516](https://user-images.githubusercontent.com/115191212/201195972-66d4ced1-2dae-4f60-b1c7-5d9f52fb0270.jpg)
 
 ## Link
